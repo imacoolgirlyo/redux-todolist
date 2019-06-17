@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import TodoApp from './TodoApp';
 
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-ReactDOM.render(<TodoApp />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+ReactDOM.render(
+  <Provider store={store}>
+    <TodoApp/>
+  </Provider>,
+  rootElement
+);
+
+/*
+ component의 최상단에서 store 사용이 가능하게 함 
+ */
 

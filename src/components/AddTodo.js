@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { addTodo } from '../redux/actions';
 
 class AddTodo extends Component{
   constructor(props){
@@ -12,7 +14,9 @@ class AddTodo extends Component{
 
   handleAddTodo = () => {
     // todo 추가하기 위한 action을 dispatch 
-    // state를 empty string으로 변경
+    this.props.addTodo(this.state.input)
+    // state를 empty string으로 변경 
+    this.setState({ input: '' })
   }
 
   render(){
@@ -30,4 +34,8 @@ class AddTodo extends Component{
   }
 }
 
-export default AddTodo;
+export default connect(
+  null, // 필요한 state를 props로 받을 때
+  { addTodo }
+)(AddTodo);
+/* redux store의 값을 읽을 수 있도록 connect 함수 제공  */
