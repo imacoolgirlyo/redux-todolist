@@ -22,8 +22,12 @@ const TodoList = ({ todos }) => (
 // mapStateToProps는 state가 변할 때마다 호출되는 함수
 const mapStateToProps = state => { 
   const { byIds, allIds } = state.todos || {}; 
-  console.log(allIds); // 현재 state에 있는 id 목록;
-  console.log(byIds);
+  const { visibilityFilter } = state;
+  /*
+    visibilityFilter가 all일 때는 모든 todos,
+    completed 일 때는, byIds[id].completed ? {...byIds[id], id} : null 
+    imcomplete 일 때는, !byIds[id].completed ? {...byIds[id], id} : null
+   */
   const todos = 
     allIds && allIds.length 
     ? allIds.map(id => (byIds ? { ...byIds[id], id}: null))

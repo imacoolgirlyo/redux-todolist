@@ -35,18 +35,6 @@ export default function(state= initialState, action){
         }
       };
     }
-    /*
-this.state = {
-  allIds : [1,2,3,4...] // id만 있음 
-  byIds : {
-    1 : {
-      content : 놀기,
-      completed : false
-    },
-    ...
-  }
-}
- */
     case TOGGLE_TODO: {
       const { id } = action.payload;
       return {
