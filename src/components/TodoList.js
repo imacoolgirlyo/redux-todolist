@@ -19,11 +19,14 @@ const TodoList = ({ todos }) => (
 - 이 컴포넌트에서 필요한 데이터를 리턴해야함 
  */ 
 
+// mapStateToProps는 state가 변할 때마다 호출되는 함수
 const mapStateToProps = state => { 
   const { byIds, allIds } = state.todos || {}; 
+  console.log(allIds); // 현재 state에 있는 id 목록;
+  console.log(byIds);
   const todos = 
     allIds && allIds.length 
-    ? allIds.map(id => (byIds ? { ...byIds[id], id}: null)) // 이게 뭔뜻 
+    ? allIds.map(id => (byIds ? { ...byIds[id], id}: null))
     : null;
     return { todos };
 }

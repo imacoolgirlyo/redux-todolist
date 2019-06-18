@@ -6,7 +6,7 @@ Reducer : 스토어에 있는 state를 변경해주기 위해 reducer에게 액�
 */
 
 import { combineReducers } from 'redux';
-import visibilityFilters from './visibilityFilters';
+import visibilityFilter from './visibilityFilter';
 import todos from './todos';
 
-export default combineReducers({ todos, visibilityFilters });
+export default combineReducers({ todos, visibilityFilter });

@@ -1,16 +1,20 @@
 import React from 'react';
 import cx from 'classnames';
+import { connect } from 'react-redux';
+import { toggleTodo } from '../redux/actions';
 
-const Todo = ({ todo }) => (
+const Todo = ({ todo, toggleTodo }) => (
   <li
     className="todo-item"
-    onClick={() => {}} // todo 토클 action을 dispatch 함 
+    onClick={() => {
+      toggleTodo(todo.id);
+    }} // todo 토클 action을 dispatch 함 
   >
     {todo && todo.completed ? "👌" : "👋"}{" "}
     <span
       className={cx(
         "todo-item__text",
-        todo && todo.completed && "todo-item__text-completed"
+        todo && todo.completed && "todo-item__text--completed"
       )}
     >
       {todo.content}
@@ -18,4 +22,7 @@ const Todo = ({ todo }) => (
   </li>
 )
 
-export default Todo;
+export default connect(
+  null,
+  { toggleTodo }
+)(Todo);
