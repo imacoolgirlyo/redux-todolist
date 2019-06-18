@@ -1,6 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 import { connect } from 'react-redux';
+import { getTodosByVisibilityFilter } from '../redux/selectors';
 
 const TodoList = ({ todos }) => (
   <ul className="todo-list">
@@ -24,15 +25,11 @@ const mapStateToProps = state => {
   const { byIds, allIds } = state.todos || {}; 
   const { visibilityFilter } = state;
   /*
-    visibilityFilter가 all일 때는 모든 todos,
-    completed 일 때는, byIds[id].completed ? {...byIds[id], id} : null 
-    imcomplete 일 때는, !byIds[id].completed ? {...byIds[id], id} : null
+    state, visibilityFilter를 받고, todos를 return 
    */
-  const todos = 
-    allIds && allIds.length 
-    ? allIds.map(id => (byIds ? { ...byIds[id], id}: null))
-    : null;
-    return { todos };
+  const todos = getTodosByVisibilityFilter(state, visibilityFilter)
+  console.log(todos);
+  return { todos }
 }
 
 export default connect(mapStateToProps)(TodoList);
